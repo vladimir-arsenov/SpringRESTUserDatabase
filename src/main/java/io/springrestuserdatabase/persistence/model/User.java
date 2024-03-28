@@ -1,4 +1,4 @@
-package io.springrestuserdatabase.model;
+package io.springrestuserdatabase.persistence.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

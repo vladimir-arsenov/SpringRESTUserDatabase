@@ -1,4 +1,4 @@
-package io.springrestuserdatabase.exceptions;
+package io.springrestuserdatabase.utils.exceptions;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(Long id) {

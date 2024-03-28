@@ -1,6 +1,6 @@
 package io.springrestuserdatabase.controller;
 
-import io.springrestuserdatabase.model.User;
+import io.springrestuserdatabase.persistence.model.User;
 import io.springrestuserdatabase.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

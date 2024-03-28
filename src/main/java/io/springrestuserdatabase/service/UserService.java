@@ -1,8 +1,8 @@
 package io.springrestuserdatabase.service;
 
-import io.springrestuserdatabase.exceptions.UserNotFoundException;
-import io.springrestuserdatabase.model.User;
-import io.springrestuserdatabase.repository.UserRepository;
+import io.springrestuserdatabase.utils.exceptions.UserNotFoundException;
+import io.springrestuserdatabase.persistence.model.User;
+import io.springrestuserdatabase.persistence.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

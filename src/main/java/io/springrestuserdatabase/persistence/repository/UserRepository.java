@@ -1,6 +1,6 @@
-package io.springrestuserdatabase.repository;
+package io.springrestuserdatabase.persistence.repository;
 
-import io.springrestuserdatabase.model.User;
+import io.springrestuserdatabase.persistence.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

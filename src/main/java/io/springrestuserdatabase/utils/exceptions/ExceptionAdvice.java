@@ -1,4 +1,4 @@
-package io.springrestuserdatabase.exceptions;
+package io.springrestuserdatabase.utils.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

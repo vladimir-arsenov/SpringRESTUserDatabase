@@ -1,8 +1,7 @@
 package io.springrestuserdatabase.controller;
 
-import io.springrestuserdatabase.exceptions.UserNotFoundException;
 import io.springrestuserdatabase.model.User;
-import io.springrestuserdatabase.repository.UserRepository;
+import io.springrestuserdatabase.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,45 +12,35 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.ok(userRepository.findAll());
+        return ResponseEntity.ok(userService.getAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(userService.getOne(id));
     }
 
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User newUser)  {
-        return new ResponseEntity<>(userRepository.save(newUser), HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.create(newUser), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> editUser(@RequestBody User newUser, @PathVariable Long id) {
-        return ResponseEntity.ok(userRepository.findById(id).map(user -> {
-            user.setFirstName(newUser.getFirstName());
-            user.setLastName(newUser.getLastName());
-            user.setBirthday(newUser.getBirthday());
-            return userRepository.save(user);
-        }).orElseGet(() -> {
-            newUser.setId(id);
-            return userRepository.save(newUser);
-        }));
+        return ResponseEntity.ok(userService.edit(id, newUser));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
-        userRepository.deleteById(id);
+        userService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
